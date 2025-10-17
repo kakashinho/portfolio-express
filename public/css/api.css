@@ -1,0 +1,393 @@
+/*  Estilo Geral*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter';
+}
+body{
+    background-color: #B3D5F2; /* Novo fundo azul claro */
+    height: 100vh;
+    color: #056CF2; /* Novo texto geral azul escuro */
+}
+.interface{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.flex{
+    display: flex;
+}
+
+h2.título{
+    color: #0583F2; /* Novo título azul primário */
+    font-size: 34px;
+    text-align: center;
+}
+h2.título span{
+    color: #0583F2; /* Nova cor de destaque do título (azul primário) */
+}
+
+.btn-contato button {
+    color: #646363;
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #ffffff;
+    color: #056CF2;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+button:hover, form .btn-enviar input[type=submit]:hover{
+    box-shadow: 0px 0px 8px #0583F2; /* Nova sombra azul primária no hover */
+    color: #fff; /* Novo texto branco no hover */
+    transform: scale(1.10);
+    transition: .2s;
+    background-color: #0597F2; /* Novo fundo azul primário no hover */
+}
+
+/*  Estilo do Cabeçalho*/
+header{
+    padding: 18px 4%;
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    align-items: center;
+    z-index: 2;
+    background-color: #056CF2; /* Novo fundo azul escuro do cabeçalho */
+    filter: drop-shadow(10px);
+}
+header > .interface{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header a{
+    color: #fff; /* Nova cor dos links do cabeçalho (branco) */
+    text-decoration: none;
+    display:inline-block;
+    transition: .2s;
+}
+header a:hover{
+    color: #B3D5F2; /* Novo hover dos links (azul claro do fundo) */
+    transform: scale(1.10);
+}
+header nav ul{
+    list-style-type: none;
+}
+
+header nav ul li{
+    display: inline-block;
+    padding: 0 40px;
+}
+.txt-topo-site > h2{
+    font-size: 4vh;
+    margin: 20px 0px;
+}
+
+/* Estilo do topo do site */
+section.topo-do-site{
+    margin-top: 15px;
+    padding: 40px 4%;
+    background-color: #53a7f1; /* Garante que o gradiente seja visível */
+}
+
+section.topo-do-site .interface .flex{
+    align-items: center;
+    justify-content: center;
+    gap: 85px;
+}
+
+.topo-do-site .txt-topo-site h1{
+    color: #fff; /* Novo título branco */
+    font-size: 5vh;
+    line-height: 40px;
+}
+
+.topo-do-site .txt-topo-site h1 span{
+    color: #056CF2; /* Nova cor de destaque do título (azul escuro) */
+}
+
+.topo-do-site .txt-topo-site article{
+    margin: 40px 0px;
+
+}
+
+.topo-do-site .txt-topo-site article > p {
+    color: #fff; /* Novos parágrafos brancos */
+    letter-spacing: 1.5px;
+    margin-bottom: 10px; /* Espaçamento de 15px entre os parágrafos */
+}
+
+.topo-do-site .img-topo-site {
+    position:relative;
+}
+
+.topo-do-site .img-topo-site > iframe{
+    object-fit: cover;
+    border-radius: 2%;
+    border: 6px solid #fff; /* Nova borda branca */
+    box-shadow: 0px 0px 20px #0583F2; /* Nova sombra azul primária */
+}
+
+/* Estilo do Sobre */
+section.sobre{
+    padding: 40px 4%;
+    background-color: #66B1F2; /* Novo fundo azul mais claro */
+}
+
+section.sobre .interface .flex{
+    align-items: center;
+    gap: 50px;
+}
+
+section.sobre .txt-sobre{
+    color: #fff; /* Novo texto branco na seção sobre */
+}
+
+section.sobre .txt-sobre > *{
+    margin: 30px 0;
+}
+
+section.sobre .txt-sobre h2 {
+    color: #fff; /* Novo título branco na seção sobre */
+    font-size: 5vh;
+    margin-bottom: 30px;
+}
+section.sobre .txt-sobre h2 span{
+    color: #0597F2; /* Nova cor de destaque do título (outro azul primário) */
+    line-height: 40px;
+}
+section.sobre .txt-sobre p{
+    color: #fff; /* Novos parágrafos brancos na seção sobre */
+    margin: 20px 0;
+}
+
+.btn-social button{
+    color: #fff; /* Novo texto branco nos botões sociais */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 0;
+    background-color: #0583F2; /* Novo fundo azul primário dos botões sociais */
+    font-size: 25px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: .2s;
+}
+
+section.sobre .img-sobre > img{
+    width: 400px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    box-shadow: 0px 0px 8px #0583F2; /* Nova sombra azul primária */
+}
+
+/*ESTILO RODAPÉ*/
+
+footer{
+    background-color: #056CF2; /* Novo fundo azul escuro do rodapé */
+    padding-block: 60px;
+    width: 100%;
+    box-shadow: 0 0 40px 10px #B3D5F21d; /* Nova sombra sutil azul claro */
+    color: #fff; /* Novo texto branco no rodapé */
+}
+
+footer .interface > div{
+    align-items: center;
+    text-align: center;
+}
+
+footer .flex{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.borda{
+    border-top: 2px solid #66B1F2; /* Nova borda azul mais clara */
+}
+
+.line-footer > p {
+    margin: 10px 0px;
+    color: #fff; /* Novo texto branco na linha do rodapé */
+}
+
+footer .line-footer p a{
+    color: #B3D5F2; /* Nova cor dos links do rodapé (azul claro) */
+}
+
+@media screen and (max-width: 1020px){
+
+    /*CLASSES GERAIS*/
+    .flex{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .btn-contato button{
+        font-size: 3.5vw;
+
+        /* Telas pequenas (celulares) */
+        @media (max-width: 480px) {
+            padding: 10px 20px;
+        }
+    }
+    .img-topo-site > iframe{
+        height: 250px;
+        max-width: 300px;
+        width: auto;
+    }
+    .topo-do-site .txt-topo-site h1 {
+    font-size: 4vh;
+    line-height: 30px;
+    }
+    .topo-do-site .txt-topo-site .quebra {
+        display: block;
+    }
+    section.sobre .img-sobre > img {
+        width: 250px;
+    }
+    section.topo-do-site .interface .flex {
+        gap: 20px;
+    }
+        
+    header a{
+    font-size: 3vw;
+    }
+
+    section.topo-do-site {
+    margin-top: 100px;
+    }
+    header nav ul li {
+    padding: 0 0;
+    }
+
+    .topo-site .flex{
+        flex-direction: column-reverse;
+    }
+    .topo-do-site .txt-topo-site h3 {
+    font-size: 5vw;
+    }
+    
+    .topo-do-site .txt-topo-site article > p {
+    font-size: 2vh;
+    }
+
+    section.sobre .txt-sobre > * {
+    margin: 0px 0;
+    font-size: 2vh;
+    }
+    section.sobre .txt-sobre > h2 {
+    font-size: 4.2vh;
+    }
+
+    .btn-social button {
+    width: 40px;
+    height: 40px;
+    }
+
+    h2.titulo{
+        font-size: 3vh;
+        line-height: 30px;
+    }
+
+    img{
+        height: 20px;
+    }
+
+    /*CABEÇALHO*/
+
+    .menu-desktop > ul{
+        display: flex;
+        flex-direction: column;
+    }
+
+    /*TOPO DO SITE*/
+
+    section.topo-site .flex{
+        gap: 40px;
+    }
+
+    section.topo-site{
+        padding: 20px 8%;
+    }
+
+    .topo-site h1{
+        font-size: 30px;
+    }
+
+    .topo-site .img-topo-site{
+        width: 100%;
+    }
+
+    /*ESPECIALIDADES*/
+
+    section.especialidades{
+        padding: 40px 8%;
+    }
+    section.especialidades .flex {
+        gap: 0px;
+    }
+    .especialidades .especialidades-box{
+        height: 350px;
+        font-size: 2vh;
+        padding: 20px;
+    }
+    .especialidades .especialidades-box h3 {
+        margin: 10px 0;
+        font-size: 3.2vh;
+    }
+
+    /*SOBRE*/
+
+    section.sobre{
+        padding: 80px 8%;
+    }
+
+    .sobre .txt-sobre h2{
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .btn-social{
+        text-align: center;
+    }
+
+    .img-sobre img{
+        width: 100%;
+    }
+
+    /*PORTFÓLIO*/
+
+    section.portfolio{
+        padding: 80px 8%;
+    }
+    section.portfolio .flex > a{
+        height: auto;
+        gap: 0px;
+    }
+
+    .img-portfolio{
+        height: 0px;
+        width: 0px;
+    }
+
+    .img-portfolio{
+        width: 100%;
+        min-height: 300px;
+        margin: 0 auto;
+    }
+
+    section.portfolio .flex{
+        gap: 60px;
+    }
+
+}

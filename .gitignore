@@ -1,0 +1,14 @@
+# Diretório das dependências
+node_modules/
+
+# Ambiente
+.env
+
+# Diretório de build (caso você use alguma ferramenta que gere build)
+dist/
+build/
+testes/
+
+# Cache do editor
+.vscode/
+.idea/

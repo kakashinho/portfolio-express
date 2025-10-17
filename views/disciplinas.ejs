@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Disciplinas</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+        /* Estilos Gerais */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header {
+        border: 2px solid hsl(211, 100%, 79%);
+        color: #007bff;;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 10px; 
+    }
+
+    .disciplinas-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+
+    /* Controles de Filtro */
+    .filter-controls {
+        margin-bottom: 25px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        max-width: 150px;
+        padding: 10px 20px;
+        border: 2px solid #007bff;
+        background-color: white;
+        color: #007bff;
+        cursor: pointer;
+        border-radius: 20px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s, transform 0.1s;
+    }
+
+    .filter-btn:hover {
+        background-color: #eaf4ff;
+    }
+
+    .filter-btn.active {
+        background-color: #007bff;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    }
+
+    /* Lista de Disciplinas (Grid/Flex) */
+    .disciplinas-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    /* Card de Disciplina */
+    .disciplina-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-left: 5px solid transparent; /* Para o indicador de status */
+    }
+
+    .disciplina-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .disciplina-title {
+        margin-top: 0;
+        color: #007bff;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        font-size: 1.3em;
+    }
+
+    .disciplina-info p {
+        margin: 8px 0;
+        line-height: 1.5;
+    }
+
+    .disciplina-info strong {
+        font-weight: 600;
+        color: #555;
+    }
+
+    /* Estilos de Status (Cores) */
+    .status-EmCurso {
+        font-weight: bold;
+        color: #ffc107; /* Amarelo */
+    }
+
+    .status-Concluída {
+        font-weight: bold;
+        color: #28a745; /* Verde */
+    }
+
+    .status-NãoCursada {
+        font-weight: bold;
+        color: #ff0000; /* Vermelho */
+    }
+
+    /* Indicador lateral no card */
+    .disciplina-card[data-status="Em Curso"] {
+        border-left-color: #ffc107;
+    }
+
+    .disciplina-card[data-status="Concluída"] {
+        border-left-color: #28a745;
+    }
+
+    .disciplina-card[data-status="Não Cursada"] {
+        border-left-color: #ff0000;
+    }
+
+    .nota-em-curso {
+        font-style: italic;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+
+    /* Responsividade básica */
+    @media (max-width: 768px) {
+        .filter-controls {
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            flex: 1 1 auto;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Incluindo a navbar -->
+    <%- include('partials/navbar') %>
+    <div class="header">
+        <h3>Minhas Disciplinas</h3> 
+    </div>
+
+    <main class="disciplinas-container">
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="Em Curso">Em Curso</button>
+            <button class="filter-btn" data-filter="Concluída">Concluídas</button>
+            <button class="filter-btn" data-filter="Não Cursada">Não Cursadas</button>
+        </div>
+
+        <div class="disciplinas-list">
+            <% disciplinas.forEach(disciplina => { %>
+                <div class="disciplina-card" data-status="<%= disciplina.status %>">
+                    <h2 class="disciplina-title"><%= disciplina.nome %></h2>
+                    <div class="disciplina-info">
+                        <p><strong>Status:</strong> <span class="status-<%= disciplina.status.replace(/\s/g, '') %>"><%= disciplina.status %></span></p>
+                        <p><strong>Semestre:</strong> <%= disciplina.semestre %></p>
+                        <p><strong>Ano:</strong> <%= disciplina.ano %></p>
+                        
+                        <% if (disciplina.status === 'Concluída') { %>
+                            <p><strong>Média:</strong> <%= disciplina.media.toFixed(1) %></p>
+                            <p><strong>Frequência:</strong> <%= disciplina.frequencia.toFixed(1) %>%</p>
+                        <% } else if (disciplina.status === 'Em Curso') { %>
+                            <p class="nota-em-curso">Dados parciais, disciplina em andamento.</p>
+                        <% } else { %>
+                            <p class="nota-em-curso">Status indefinido ou não iniciado.</p>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const disciplinaCards = document.querySelectorAll('.disciplina-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Remove 'active' de todos e adiciona no clicado
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Filtra os cards
+                    disciplinaCards.forEach(card => {
+                        const cardStatus = card.getAttribute('data-status');
+                        
+                        if (filter === 'all' || cardStatus === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

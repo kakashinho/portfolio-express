@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+    /* Estilos Gerais */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1e3a8a; /* Azul escuro */
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0 0 5px 0;
+    font-weight: 700;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+    padding: 0 20px;
+}
+
+/* Seção de Métricas Principais (Cards) */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.metric-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    border-bottom: 5px solid;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.metric-card h3 {
+    font-size: 1.1em;
+    color: #6c757d;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.metric-card .value {
+    font-size: 3em;
+    font-weight: 800;
+    margin: 5px 0 0 0;
+}
+
+/* Cores específicas para os cards */
+.card-disciplinas { border-color: #38a169; } /* Verde - Concluído/Estável */
+.card-disciplinas .value { color: #38a169; }
+
+.card-projetos { border-color: #3182ce; } /* Azul - Progresso */
+.card-projetos .value { color: #3182ce; }
+
+.card-github { border-color: #a0aec0; } /* Cinza - Meta */
+.card-github .value { color: #a0aec0; font-size: 2.2em; }
+
+
+/* Seção de Tecnologias (Gráfico) */
+.technologies-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.technologies-section h2 {
+    color: #1e3a8a;
+    border-bottom: 2px solid #f4f7f6;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+}
+
+.language-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.language-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.language-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #444;
+}
+
+/* Barra de Progresso (Simulada) */
+.progress-bar-container {
+    height: 10px;
+    background-color: #e2e8f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1s ease-out;
+}
+
+/* Detalhes do GitHub */
+.github-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f4f8;
+    text-align: center;
+    font-size: 0.9em;
+    color: #8c8c8c;
+}
+
+.github-details span {
+    font-weight: 700;
+    color: #444;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+</head>
+<body>
+    <!-- Incluindo a navbar (assumindo que você tem o partials/navbar.ejs) -->
+    <%- include('partials/navbar') %>
+
+    <header>
+        <h1><i class="bi bi-bar-chart-fill"></i> <%= title %></h1>
+        <p>Visão geral das suas conquistas acadêmicas e técnicas.</p>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- 1. Métricas Principais (Cards) -->
+        <section class="metrics-grid">
+            
+            <!-- Disciplinas -->
+            <div class="metric-card card-disciplinas">
+                <h3>Total de Disciplinas</h3>
+                <p class="value"><%= totalDisciplinas %></p>
+                <p style="font-size: 0.9em; color: #8c8c8c;">Total geral do curso (cursadas e a cursar).</p>
+            </div>
+
+            <!-- Projetos Concluídos -->
+            <div class="metric-card card-projetos">
+                <h3>Projetos Concluídos</h3>
+                <p class="value"><%= projetosConcluidos %></p>
+                <p style="font-size: 0.9em; color: #8c8c8c;">Projetos finalizados no seu portfólio.</p>
+            </div>
+
+            <!-- Repositórios no GitHub (Métrica do GitHub) -->
+            <div class="metric-card card-github">
+                <h3>Repositórios Ativos no GitHub</h3>
+                <p class="value"><%= githubStats.repositorios %></p>
+                <p style="font-size: 0.9em; color: #8c8c8c;">Repositórios públicos criados.</p>
+            </div>
+            
+        </section>
+
+        <!-- 2. Tecnologias Mais Usadas (Gráfico de Linguagens do GitHub) -->
+        <section class="technologies-section">
+            <h2><i class="bi bi-code-square"></i> Linguagens mais usadas (GitHub)</h2>
+
+            <div class="language-list">
+                <% githubStats.linguagensPrincipais.forEach(lang => { %>
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span><%= lang.name %></span>
+                            <span><%= lang.percentage %>%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <!-- A barra de progresso usa a cor e a porcentagem da linguagem -->
+                            <div class="progress-bar" 
+                                data-width="<%= lang.percentage %>" 
+                                data-color="<%= lang.color %>">
+                            </div>
+                        </div>
+                        <!--  <%= parseFloat(lang.percentage) || 0 %>%; -->
+                    </div>
+                <% }); %>
+            </div>
+
+            <div class="github-details">
+                <p>
+                    Dados baseados no usuário 
+                    <% 
+                    // Checa se o nome de usuário foi preenchido com algo diferente do placeholder
+                    if (githubStats.username && githubStats.username !== "SeuNomeDeUsuarioAqui") { 
+                    %>
+                        <a href="https://github.com/<%= githubStats.username %>" target="_blank" style="color: inherit; text-decoration: none;">
+                            <span>@<%= githubStats.username %></span>
+                        </a>
+                    <% } else { %>
+                        <span>@<%= githubStats.username %></span>
+                    <% } %>
+                    . Total de commits na plataforma: <span><%= githubStats.totalCommits %></span>.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Dashboard carregado. Estilos carregados via CSS externo.');
+
+            // Animação das barras de progresso
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                // Força o re-render para garantir a animação 'transition: width 1s ease-out;'
+                bar.style.width = bar.style.width; 
+            });
+
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                const color = bar.getAttribute('data-color');
+
+                bar.style.width = width + '%';
+                bar.style.backgroundColor = color;
+            });
+        });
+    </script>
+</body>
+</html>
